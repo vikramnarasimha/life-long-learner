@@ -1,0 +1,21 @@
+# Python packages for learning and experimentation
+jupyter
+ipython
+notebook
+
+# ML/AI packages
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+
+# Google Cloud Platform
+google-cloud-storage
+google-cloud-bigquery
+google-cloud-aiplatform
+
+# General utilities
+requests
+pyyaml
+python-dotenv
