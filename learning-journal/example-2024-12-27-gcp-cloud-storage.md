@@ -55,6 +55,8 @@ from google.cloud import storage
 import os
 
 # Set up authentication
+# SECURITY NOTE: Never hardcode credentials or commit service account keys to git
+# Use environment variables or GCP's Application Default Credentials in production
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'path/to/service-account-key.json'
 
 # Initialize client

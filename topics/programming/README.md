@@ -17,6 +17,9 @@ Resources for learning programming languages, frameworks, and best practices.
 "Explain Go concurrency patterns with examples"
 "Create a TypeScript interface for a user management system"
 "What are common design patterns in Python?"
+"How do I write effective unit tests for this function?"
+"Debug this code and explain the issue"
+"What are performance optimization techniques for [language]?"
 ```
 
 ## 💡 Topics

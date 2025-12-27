@@ -113,6 +113,7 @@ with mlflow.start_run():
 mlflow.register_model("runs:/<run_id>/model", "MyModel")
 
 # 3. Deploy to production
+# The run_id would be obtained from the mlflow.start_run() context
 # Use CI/CD pipeline to deploy registered model
 ```
 
