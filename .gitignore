@@ -41,6 +41,7 @@ package-lock.json
 *.tfstate
 *.tfstate.*
 .terraform/
+terraform.tfvars
 .terraform.lock.hcl
 
 # Credentials and secrets

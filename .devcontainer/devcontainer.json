@@ -1,6 +1,6 @@
 {
   "name": "Life Long Learner Dev Environment",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
   
   "features": {
     "ghcr.io/devcontainers/features/python:1": {
@@ -17,7 +17,10 @@
     },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/gcloud:1": {
+      "version": "latest"
+    }
   },
 
   "customizations": {
@@ -43,7 +46,7 @@
     }
   },
 
-  "postCreateCommand": "pip install --user -r .devcontainer/requirements.txt || echo 'No requirements.txt yet'",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
 
   "remoteUser": "codespace"
 }
