@@ -88,16 +88,36 @@ Created `/workspaces/life-long-learner/exercises/terraform-gcp-bucket/`
 
 **What I learned:**
 - Terraform needs credentials to access GCP
-- Two authentication methods:
-  1. `gcloud auth application-default login` - for development
-  2. Service Account key file - for production/CI/CD
-- gcloud CLI and Terraform need separate authentication
+- Two types of gcloud authentication exist - they serve different purposes!
+
+**Authentication Types:**
+
+1. **`gcloud auth login`**
+   - Only authenticates the gcloud CLI tool itself
+   - For running gcloud commands like `gcloud storage ls`
+   - Stores credentials in `~/.config/gcloud/`
+   - **Terraform CANNOT use these credentials**
+
+2. **`gcloud auth application-default login`** ⭐ (What we need!)
+   - Creates **Application Default Credentials (ADC)**
+   - Used by applications, SDKs, and Terraform
+   - Stores in `~/.config/gcloud/application_default_credentials.json`
+   - **Both gcloud CLI and Terraform can use these!**
+
+3. **Service Account key file** (Production/CI/CD)
+   - Export: `GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json`
+   - Best for automated workflows and GitHub Actions
 
 **Commands used:**
 ```bash
+# This one command works for BOTH gcloud and Terraform
 gcloud auth application-default login
+
+# Set your default project
 gcloud config set project YOUR-PROJECT-ID
 ```
+
+**Key Insight:** One `application-default login` covers both tools! You don't need separate authentication.
 
 ### Step 4: Terraform Workflow ✅
 
@@ -202,8 +222,9 @@ See files in `/workspaces/life-long-learner/exercises/terraform-gcp-bucket/`
   - **Learning:** Understand what persists vs. what needs configuration in cloud dev environments
 
 - **Challenge:** gcloud authentication separate from Terraform authentication
-  - **Solution:** Ran `gcloud auth application-default login` for Terraform, `gcloud auth login` for gcloud CLI
-  - **Learning:** Different tools may need separate authentication even for the same cloud platform
+  - **Solution:** Ran `gcloud auth application-default login` which creates ADC that both tools use
+  - **Learning:** Application Default Credentials work for both gcloud CLI and Terraform - one auth for both!
+  - **Clarification:** Initially confused - thought they needed separate auth, but ADC works for both
 
 - **Challenge:** Understanding difference between Terraform resource names and actual GCP names
   - **Solution:** Clarified that `"my_bucket"` is Terraform identifier, `name` property is actual GCP name
